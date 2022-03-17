@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux'
 
 //controllers
-import { newtLogOutHandler } from '../../controllers/api/Next/logout';
+import { nextLogOutHandler } from '../../controllers/api/Next/logout';
 
 const NavBar = () => {
     const router = useRouter();
@@ -26,7 +26,7 @@ const NavBar = () => {
                 <a
                     className='nav-link'
                     href='#!'
-                    onClick={() => newtLogOutHandler(dispatch)}
+                    onClick={() => nextLogOutHandler(dispatch)}
                 >
                     Logout
                 </a>

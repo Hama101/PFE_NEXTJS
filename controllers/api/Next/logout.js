@@ -1,7 +1,7 @@
 import { callNext } from "../../http"
 import { logout } from '../../redux/actions/auth'
 
-export const newtLogOutHandler = (dispatch) => {
+export const nextLogOutHandler = (dispatch) => {
     if (dispatch && dispatch !== null && dispatch !== undefined) {
         dispatch(logout());
         setTimeout(() => {
