@@ -4,7 +4,8 @@ import {
     SET_AUTH_LOADING, REMOVE_AUTH_LOADING,
     LOGIN_SUCCESS, LOGIN_FAIL,
     LOGOUT_SUCCESS, LOGOUT_FAIL,
-    LOAD_USER_SUCCESS, LOAD_USER_FAIL
+    LOAD_USER_SUCCESS, LOAD_USER_FAIL,
+    AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL
 } from '../actions/types'
 
 // the initial state of the auth reducer
@@ -84,6 +85,21 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
+
+        //handel authenticated ( verfiying token with django backend)
+        case AUTHENTICATED_SUCCESS:
+            return {
+                ...state,
+                authenticated: true,
+
+            }
+        case AUTHENTICATED_FAIL:
+            return {
+                ...state,
+                authenticated: false,
+                user: null,
+            }
+
         //Default state
         default:
             return state

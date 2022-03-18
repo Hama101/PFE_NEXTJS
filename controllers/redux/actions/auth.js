@@ -4,7 +4,8 @@ import {
     SET_MESSAGE,
     LOGIN_SUCCESS, LOGIN_FAIL,
     LOGOUT_SUCCESS, LOGOUT_FAIL,
-    LOAD_USER_SUCCESS, LOAD_USER_FAIL
+    LOAD_USER_SUCCESS, LOAD_USER_FAIL,
+    AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL
 } from './types'
 import { callNext } from '../../../controllers/http'
 
@@ -55,7 +56,36 @@ export const loadUser = () => async dispatch => {
     })
 }
 
-
+// verfication action
+export const check_auth_status = () => async dispatch => {
+    // set loading state
+    dispatch({
+        type: SET_AUTH_LOADING
+    })
+    try {
+        const apiResponse = await callNext.get("accounts/verify/");
+        if (apiResponse.status === 200) {
+            console.log("verfication action success")
+            dispatch({
+                type: AUTHENTICATED_SUCCESS,
+            })
+            // we re dispatch load user cause we need to load the user data again after verfication (user:null)
+            dispatch(loadUser())
+        } else {
+            dispatch({
+                type: AUTHENTICATED_FAIL,
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: AUTHENTICATED_FAIL,
+        })
+    }
+    //remove loading state
+    dispatch({
+        type: REMOVE_AUTH_LOADING
+    })
+}
 
 //action creater for register handler
 export const register = (first_name, last_name, username, email, password, re_password) => async dispatch => {

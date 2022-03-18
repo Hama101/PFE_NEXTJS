@@ -1,6 +1,5 @@
 //my compents
 import Layout from '../components/layout'
-import MyLoader from '../components/MyLoader'
 //3rd party components
 import swal from 'sweetalert';
 // react , redux and next stuff
@@ -14,7 +13,6 @@ import { register } from '../controllers/redux/actions/auth'
 const RegisterPage = () => {
     const register_success = useSelector(state => state.auth.register_success)
 
-    const loading = useSelector(state => state.auth.loading)
     const dispatch = useDispatch()
     //initial state for the form data
     const [formData, setFormData] = useState({
@@ -64,36 +62,34 @@ const RegisterPage = () => {
 
             <div>
                 <h1 className="display-4">Register Page</h1>
-                {loading && <MyLoader />}
-                {!loading &&
-                    <form className="bg-dark p-5 mt-5 mb-5" onSubmit={onSubmit} >
-                        <div className="form-group">
-                            <label className="text-white form-label mt-3" htmlFor="first_name">First Name</label>
-                            <input type="text" className="form-control" id="first_name" name="first_name" value={first_name} onChange={onChange} required />
-                        </div>
-                        <div className="form-group">
-                            <label className="text-white form-label mt-3" htmlFor="last_name">Last Name</label>
-                            <input type="text" className="form-control" id="last_name" name="last_name" value={last_name} onChange={onChange} required />
-                        </div>
-                        <div className="form-group">
-                            <label className="text-white form-label mt-3" htmlFor="username">Username</label>
-                            <input type="text" className="form-control" id="username" name="username" value={username} onChange={onChange} required />
-                        </div>
-                        <div className="form-group">
-                            <label className="text-white form-label mt-3" htmlFor="email">Email</label>
-                            <input type="email" className="form-control" id="email" name="email" value={email} onChange={onChange} required />
-                        </div>
-                        <div className="form-group">
-                            <label className="text-white form-label mt-3" htmlFor="password">Password</label>
-                            <input minLength='8' type="password" className="form-control" id="password" name="password" value={password} onChange={onChange} required />
-                        </div>
-                        <div className="form-group">
-                            <label className="text-white form-label mt-3" htmlFor="re_password">Re-enter Password</label>
-                            <input minLength='8' type="password" className="form-control" id="re_password" name="re_password" value={re_password} onChange={onChange} />
-                        </div>
-                        <br />
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>}
+                <form className="bg-dark p-5 mt-5 mb-5" onSubmit={onSubmit} >
+                    <div className="form-group">
+                        <label className="text-white form-label mt-3" htmlFor="first_name">First Name</label>
+                        <input type="text" className="form-control" id="first_name" name="first_name" value={first_name} onChange={onChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white form-label mt-3" htmlFor="last_name">Last Name</label>
+                        <input type="text" className="form-control" id="last_name" name="last_name" value={last_name} onChange={onChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white form-label mt-3" htmlFor="username">Username</label>
+                        <input type="text" className="form-control" id="username" name="username" value={username} onChange={onChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white form-label mt-3" htmlFor="email">Email</label>
+                        <input type="email" className="form-control" id="email" name="email" value={email} onChange={onChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white form-label mt-3" htmlFor="password">Password</label>
+                        <input minLength='8' type="password" className="form-control" id="password" name="password" value={password} onChange={onChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white form-label mt-3" htmlFor="re_password">Re-enter Password</label>
+                        <input minLength='8' type="password" className="form-control" id="re_password" name="re_password" value={re_password} onChange={onChange} />
+                    </div>
+                    <br />
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
             </div>
         </Layout>
     );

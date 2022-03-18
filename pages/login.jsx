@@ -1,6 +1,5 @@
 //my compents
 import Layout from '../components/layout'
-import MyLoader from '../components/MyLoader'
 //3rd party components
 
 // react , redux and next stuff
@@ -16,7 +15,7 @@ const LoginPage = () => {
     const router = useRouter()
 
     const isAuthenticated = useSelector(state => state.auth.authenticated)
-    const loading = useSelector(state => state.auth.loading)
+
 
     const dispatch = useDispatch()
     //initial state for the form data
@@ -31,7 +30,7 @@ const LoginPage = () => {
     useEffect(() => {
         if (dispatch && dispatch !== null && dispatch !== undefined)
             dispatch(resetRegister())
-    }, [])
+    }, [dispatch])
 
     //onchange event function for the form data
     const onChange = (event) => {
@@ -58,21 +57,20 @@ const LoginPage = () => {
 
             <div>
                 <h1 className="display-4">Login Page</h1>
-                {loading && <MyLoader />}
-                {!loading &&
-                    <form className="bg-dark p-5 mt-5 mb-5" onSubmit={onSubmit} >
-                        <div className="form-group">
-                            <label className="text-white form-label mt-3" htmlFor="username">Username</label>
-                            <input type="text" className="form-control" id="username" name="username" value={username} onChange={onChange} required />
-                        </div>
-                        <div className="form-group">
-                            <label className="text-white form-label mt-3" htmlFor="password">Password</label>
-                            <input type="password" className="form-control" id="password" name="password" value={password} onChange={onChange} required />
-                        </div>
-                        <br />
-                        <button type="submit" className="btn btn-primary">Login</button>
-                    </form>
-                }
+
+                <form className="bg-dark p-5 mt-5 mb-5" onSubmit={onSubmit} >
+                    <div className="form-group">
+                        <label className="text-white form-label mt-3" htmlFor="username">Username</label>
+                        <input type="text" className="form-control" id="username" name="username" value={username} onChange={onChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-white form-label mt-3" htmlFor="password">Password</label>
+                        <input type="password" className="form-control" id="password" name="password" value={password} onChange={onChange} required />
+                    </div>
+                    <br />
+                    <button type="submit" className="btn btn-primary">Login</button>
+                </form>
+
             </div>
         </Layout>
     );

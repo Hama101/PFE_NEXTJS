@@ -21,3 +21,7 @@ export const LOGOUT_FAIL = 'LOGIN_FAIL';
 //get user action types
 export const LOAD_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const LOAD_USER_FAIL = 'GET_USER_FAIL';
+
+//token verfication action types
+export const AUTHENTICATED_SUCCESS = 'AUTHENTICATED_SUCCESS';
+export const AUTHENTICATED_FAIL = 'AUTHENTICATED_FAIL';

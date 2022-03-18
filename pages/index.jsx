@@ -13,6 +13,7 @@ export default function HomePage() {
   const isAuthenticated = useSelector(state => state.auth.authenticated)
   const user = useSelector(state => state.auth.user)
   const loading = useSelector(state => state.auth.loading)
+
   if (!isAuthenticated && typeof window !== 'undefined' && !loading) {
     router.push('/login')
   }
