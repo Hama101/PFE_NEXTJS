@@ -25,3 +25,7 @@ export const LOAD_USER_FAIL = 'GET_USER_FAIL';
 //token verfication action types
 export const AUTHENTICATED_SUCCESS = 'AUTHENTICATED_SUCCESS';
 export const AUTHENTICATED_FAIL = 'AUTHENTICATED_FAIL';
+
+// refresh tokens action types
+export const REFRESH_TOKENS_SUCCESS = 'REFRESH_TOKENS_SUCCESS';
+export const REFRESH_TOKENS_FAIL = 'REFRESH_TOKENS_FAIL';

@@ -5,7 +5,8 @@ import {
     LOGIN_SUCCESS, LOGIN_FAIL,
     LOGOUT_SUCCESS, LOGOUT_FAIL,
     LOAD_USER_SUCCESS, LOAD_USER_FAIL,
-    AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL
+    AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL,
+    REFRESH_TOKENS_SUCCESS, REFRESH_TOKENS_FAIL
 } from './types'
 import { callNext } from '../../../controllers/http'
 
@@ -85,6 +86,37 @@ export const check_auth_status = () => async dispatch => {
     dispatch({
         type: REMOVE_AUTH_LOADING
     })
+}
+
+// refresh token action 
+export const refresh_tokens = () => async dispatch => {
+    // set loading state
+    // dispatch({
+    //     type: SET_AUTH_LOADING
+    // })
+    try {
+        const apiResponse = await callNext.get("accounts/refresh/");
+        if (apiResponse.status === 200) {
+            console.log("refresh token action success")
+            dispatch({
+                type: REFRESH_TOKENS_SUCCESS,
+            })
+            //dispatch check_auth_status
+            dispatch(check_auth_status())
+        } else {
+            dispatch({
+                type: REFRESH_TOKENS_FAIL,
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: REFRESH_TOKENS_FAIL,
+        })
+    }
+    //remove loading state
+    // dispatch({
+    //     type: REMOVE_AUTH_LOADING
+    // })
 }
 
 //action creater for register handler

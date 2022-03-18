@@ -9,7 +9,7 @@ export default async (request, response) => {
         const cookies = cookie.parse(request.headers.cookie ?? '');
         // get the token from the cookies
         const access = cookies.access ?? false;
-        console.log(access);
+        // console.log(access);
         if (access === false) {
             return response.status(403).json({
                 error: "User forbidden from making the request",

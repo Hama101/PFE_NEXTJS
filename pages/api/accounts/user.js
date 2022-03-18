@@ -6,7 +6,7 @@ export default async (request, response) => {
     if (request.method === "GET") {
         const cookies = cookie.parse(request.headers.cookie ?? '');
         const access = cookies.access ?? false;
-
+        // console.log(access);
         //if no access token, return 401
         if (access === false) {
             response.status(401).json({

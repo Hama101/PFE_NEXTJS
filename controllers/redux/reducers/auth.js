@@ -5,7 +5,8 @@ import {
     LOGIN_SUCCESS, LOGIN_FAIL,
     LOGOUT_SUCCESS, LOGOUT_FAIL,
     LOAD_USER_SUCCESS, LOAD_USER_FAIL,
-    AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL
+    AUTHENTICATED_SUCCESS, AUTHENTICATED_FAIL,
+    REFRESH_TOKENS_SUCCESS, REFRESH_TOKENS_FAIL
 } from '../actions/types'
 
 // the initial state of the auth reducer
@@ -91,7 +92,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 authenticated: true,
-
             }
         case AUTHENTICATED_FAIL:
             return {
@@ -100,6 +100,17 @@ const authReducer = (state = initialState, action) => {
                 user: null,
             }
 
+        //handel refresh tokens
+        case REFRESH_TOKENS_SUCCESS:
+            return {
+                ...state,
+            }
+        case REFRESH_TOKENS_FAIL:
+            return {
+                ...state,
+                authenticated: false,
+                user: null,
+            }
         //Default state
         default:
             return state
