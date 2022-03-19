@@ -56,7 +56,7 @@ const RegisterPage = () => {
     }
     return (
         <Layout
-            title="Sea-of-Food | Register"
+            title="I FOOD  | Register"
             description="Register page where you can register for the website"
         >
 

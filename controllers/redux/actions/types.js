@@ -29,3 +29,8 @@ export const AUTHENTICATED_FAIL = 'AUTHENTICATED_FAIL';
 // refresh tokens action types
 export const REFRESH_TOKENS_SUCCESS = 'REFRESH_TOKENS_SUCCESS';
 export const REFRESH_TOKENS_FAIL = 'REFRESH_TOKENS_FAIL';
+
+
+// recipes action types
+export const SET_RECIPES = 'SET_RECIPES';
+export const SET_RECIPES_FAIL = 'SET_RECIPES_FAIL';

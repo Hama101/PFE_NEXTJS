@@ -3,17 +3,19 @@ import axios from 'axios';
 //API routes
 import DATABASEURL from './apiRoutes'
 
+// to cancel requests when spaming the server
+
 export const callDjango = axios.create({
     baseURL: DATABASEURL.production,
-    timeout: 5000,
+    timeout: 20000,
     headers: {
         'Content-Type': 'application/json',
-    }
+    },
 });
 
 export const callNext = axios.create({
     baseURL: '/api',
-    timeout: 5000,
+    timeout: 20000,
     headers: {
         'Content-Type': 'application/json',
     }

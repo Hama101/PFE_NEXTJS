@@ -51,7 +51,7 @@ const LoginPage = () => {
 
     return (
         <Layout
-            title="Sea-of-Food | Login"
+            title="I FOOD | Login"
             description="Login page where you can Login for the website"
         >
 

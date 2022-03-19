@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 export default function ProfilePage() {
     return (
         <Layout
-            title="Sea-of-Food | Profile"
+            title="I FOOD  | Profile"
             description="Profile page where you can find the best food around the world"
         >
             <div className='p-5 bg-dark rounded-3'>

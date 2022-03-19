@@ -37,7 +37,7 @@ const Layout = ({ title, content, children }) => {
         if (dispatch && dispatch !== null && dispatch !== undefined) {
             // when check_auth_status fails call refresh_tokens
             dispatch(check_auth_status()).catch(err => {
-                if (err.response.status === 401) {
+                if (err.response.status === 403) {
                     dispatch(refresh_tokens()).catch(err => {
                         if (err.response.status === 401) {
                             dispatch({ type: SET_MESSAGE, payload: { message: 'Your session has expired please login again', type: 'error' } })

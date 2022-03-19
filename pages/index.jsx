@@ -2,28 +2,38 @@ import styles from '../styles/Home.module.css'
 import Layout from '../components/layout'
 // react , redux and next stuff
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useRouter } from 'next/router'
 //my controllers
+import { fetchListOfRecipesDispatcher } from '../controllers/redux/actions/recipes'
 
+
+//gloabl functions
 
 export default function HomePage() {
+  //variables
   const router = useRouter()
 
   const isAuthenticated = useSelector(state => state.auth.authenticated)
   const user = useSelector(state => state.auth.user)
   const loading = useSelector(state => state.auth.loading)
 
+
+
+  //functions
+
   if (!isAuthenticated && typeof window !== 'undefined' && !loading) {
     router.push('/login')
+  } else {
+    router.push('/recipes')
   }
 
   console.log("the user is :", user)
   console.log("is authenticated :", isAuthenticated)
-
+  console.log("loading :", loading)
   return (
     <Layout
-      title="Sea-of-Food | Home"
+      title="I FOOD | Home"
       description="Home page where you can find the best food around the world"
     >
       <div className='p-5 bg-dark rounded-3'>

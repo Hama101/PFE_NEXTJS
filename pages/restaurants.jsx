@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 export default function RestaurantsPage() {
     return (
         <Layout
-            title="Sea-of-Food | Restaurants"
+            title="I FOOD  | Restaurants"
             description="Restaurants page where you can find the best food around the world"
         >
             <div className='p-5 bg-dark rounded-3'>
