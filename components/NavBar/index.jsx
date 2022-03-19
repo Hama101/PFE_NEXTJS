@@ -89,6 +89,26 @@ const NavBar = () => {
                                 </a>
                             </Link>
                         </li>
+                        <li className='nav-item'>
+                            <Link href='/recipes'>
+                                <a className={
+                                    router.pathname === '/recipes' ?
+                                        'nav-link active' : 'nav-link'
+                                }>
+                                    Recipes
+                                </a>
+                            </Link>
+                        </li>
+                        <li className='nav-item'>
+                            <Link href='/resturants'>
+                                <a className={
+                                    router.pathname === '/resturants' ?
+                                        'nav-link active' : 'nav-link'
+                                }>
+                                    Resturants
+                                </a>
+                            </Link>
+                        </li>
                         {
                             isAuthenticated ? authLinks : guestLinks
                         }
