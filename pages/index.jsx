@@ -5,21 +5,23 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 //my controllers
-import { fetchListOfRecipesDispatcher } from '../controllers/redux/actions/recipes'
-import { uploadImage } from '../controllers/api/AI/predictImage'
-
+import { SET_AUTH_LOADING, REMOVE_AUTH_LOADING } from '../controllers/redux/actions/types'
+import { uploadImageByAxios } from '../controllers/api/AI/predictImage'
+//my components
+import MyLoader from '../components/MyLoader'
 //gloabl functions
 
 export default function HomePage() {
   //variables
   const router = useRouter()
-
+  const dispatch = useDispatch()
+  //redux states
   const isAuthenticated = useSelector(state => state.auth.authenticated)
   const user = useSelector(state => state.auth.user)
   const loading = useSelector(state => state.auth.loading)
-
+  //local states
   const [file, setFile] = useState(null)
-
+  const [fileLoading, setFileLoading] = useState(false)
   //functions
   if (!isAuthenticated && typeof window !== 'undefined' && !loading) {
     // router.push('/login')
@@ -28,10 +30,11 @@ export default function HomePage() {
   }
   //handelClick
   const handelClick = async (event) => {
-    console.log("the file we are uploading is ", file);
-    event.preventDefault();
-    const data = await uploadImage(file)
-    console.log("the data is in home is", data);
+    setFileLoading(true)
+    event.preventDefault()
+    const apiPrecition = await uploadImageByAxios(file)
+    console.table(apiPrecition);
+    setFileLoading(false)
   }
 
   return (
@@ -51,8 +54,9 @@ export default function HomePage() {
 
         <form >
           <div className='form-group'>
-            {//a image preview}
-              file && <img src={URL.createObjectURL(file)} alt='preview' className='img-fluid' height={200} width={300} />}
+            {//a image preview
+              file && <img src={URL.createObjectURL(file)} alt='preview' className='img-fluid' height={200} width={300} />
+            }
             <br />
             <input type="file" className='form-control-file mt-3'
               accept="image/*"
@@ -61,13 +65,18 @@ export default function HomePage() {
               }}
             />
           </div>
-          <button
-            type='submit'
-            className='btn btn-primary mt-3'
-            onClick={(event) => handelClick(event)}
-          >
-            Upload
-          </button>
+          {
+            !fileLoading && <button
+              type='submit'
+              className='btn btn-primary mt-3'
+              onClick={(event) => handelClick(event)}
+            >
+              Upload
+            </button>
+          }
+          {
+            fileLoading && <MyLoader />
+          }
         </form>
       </div>
     </Layout>

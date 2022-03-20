@@ -14,6 +14,7 @@ const initialState = {
     authenticated: false,
     loading: false,
     user: null,
+    profile: null,
     register_success: false,
 }
 
@@ -81,6 +82,7 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 authenticated: true,
                 user: action.payload.user,
+                profile: action.payload.profile,
             }
         case LOAD_USER_FAIL:
             return {

@@ -37,32 +37,36 @@ const CartList = () => {
 
     return (
         <>
-            <div className='p-3 bg-dark rounded-3'>
-                <div className='container-fluid'>
-                    {/* a div with input field and a button aligned on the same line */}
-                    <div className='row'>
-                        <div>
-                            <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Search for recipes'
-                                value={query || ''}
-                                onChange={(e) => {
-                                    setQuery(e.target.value)
-                                }}
-                            />
-                            <button
-                                className="btn btn-success bg-dark mt-2"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handelSearch();
-                                }}>
-                                <span className="green-title">Search</span>
-                            </button>
+            <form method="get">
+                <div className='p-3 bg-dark rounded-3'>
+                    <div className='container-fluid'>
+                        {/* a div with input field and a button aligned on the same line */}
+                        <div className='row'>
+                            <div>
+                                <input
+                                    type='text'
+                                    className='form-control'
+                                    placeholder='Search for recipes'
+                                    name='query'
+                                    value={query || ''}
+                                    onChange={(e) => {
+                                        setQuery(e.target.value)
+                                    }}
+                                />
+                                <button
+                                    type='submit'
+                                    className="btn btn-success bg-dark mt-2"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handelSearch();
+                                    }}>
+                                    <span className="green-title">Search</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
 
             <InfiniteScroll
                 dataLength={recipes.length}

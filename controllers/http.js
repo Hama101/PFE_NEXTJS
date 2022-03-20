@@ -1,7 +1,7 @@
 // import axios and create a default instance of axios
 import axios from 'axios';
 //API routes
-import DATABASEURL from './apiRoutes'
+import DATABASEURL, { BASE_AI_LIVE_URL } from './apiRoutes'
 
 // to cancel requests when spaming the server
 
@@ -21,4 +21,11 @@ export const callNext = axios.create({
     }
 });
 
-
+export const callAI = axios.create({
+    baseURL: BASE_AI_LIVE_URL,
+    timeout: 60000, // this may take a long time
+    headers: {
+        Aceept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+    }
+})

@@ -4,7 +4,7 @@ import React from 'react';
 
 const Cart = ({ recipe }) => {
     return (
-        <div className="card m-3" style={{ width: '20rem' }}>
+        <div className="card m-3" style={{ width: '18rem' }}>
             <img src={recipe.thumbnail} className="card-img-top mt-2" alt={recipe.name} height={300} width={200} />
             <div className="card-body">
                 <h5 className="card-title">{recipe.name}</h5>

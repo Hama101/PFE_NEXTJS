@@ -9,29 +9,33 @@ const NavBar = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const isAuthenticated = useSelector(state => state.auth.authenticated)
+    const profile = useSelector(state => state.auth.profile)
+
+    const handelLogOut = (event) => {
+        event.preventDefault();
+        nextLogOutHandler(dispatch);
+    }
+
 
     const authLinks = (
-        <>
-            {/* <li className='nav-item'>
-                <Link href='/dashboard'>
-                    <a className={
-                        router.pathname === '/dashboard' ?
-                            'nav-link active' : 'nav-link'
-                    }>
-                        Dashboard
-                    </a>
-                </Link>
-            </li> */}
-            <li className='nav-item'>
-                <a
-                    className='nav-link'
-                    href='#!'
-                    onClick={() => nextLogOutHandler(dispatch)}
-                >
-                    Logout
+        <div>
+            <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {profile && <img src={profile.avatar} alt={profile.name} width="30" height="30" className="rounded-circle" />}
                 </a>
+                <div>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a className="dropdown-item" href="#">Dashboard</a>
+                        <a className="dropdown-item" href="#">Edit Profile</a>
+                        <a className="dropdown-item"
+                            onClick={(event) => {
+                                handelLogOut(event)
+                            }}
+                        >Log Out</a>
+                    </div>
+                </div>
             </li>
-        </>
+        </div>
     );
 
     const guestLinks = (
@@ -59,11 +63,12 @@ const NavBar = () => {
         </>
     );
     return (
-        <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-3'>
+        <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-3 '>
             <div className='container-fluid'>
-                <Link href='/'>
-                    <a className='navbar-brand'>
-                        LOGO
+                <Link href='/' className='nav-item'>
+                    <a className="nav-link" href="#">
+                        <img src="https://res.cloudinary.com/after-code/image/upload/v1647779311/IFood_hfzqqn.png"
+                            width="30" height="30" alt="logo" className="rounded-circle" />
                     </a>
                 </Link>
                 <button
@@ -79,7 +84,7 @@ const NavBar = () => {
                 </button>
                 <div className='collapse navbar-collapse' id='navbarNav'>
                     <ul className='navbar-nav'>
-                        <li className='nav-item'>
+                        {/* <li className='nav-item'>
                             <Link href='/'>
                                 <a className={
                                     router.pathname === '/' ?
@@ -88,7 +93,7 @@ const NavBar = () => {
                                     Home
                                 </a>
                             </Link>
-                        </li>
+                        </li> */}
                         <li className='nav-item'>
                             <Link href='/recipes'>
                                 <a className={
@@ -109,6 +114,11 @@ const NavBar = () => {
                                 </a>
                             </Link>
                         </li>
+
+                    </ul>
+                </div>
+                <div className='collapse navbar-collapse justify-content-end ' id='navbarNav'>
+                    <ul className='navbar-nav'>
                         {
                             isAuthenticated ? authLinks : guestLinks
                         }
