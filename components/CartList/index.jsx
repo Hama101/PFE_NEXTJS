@@ -7,7 +7,7 @@ import MyLoader from '../MyLoader'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchListOfRecipesByPageAndQuery } from '../../controllers/api/Django/recpies'
 
-const CartList = () => {
+const CartList = ({username}) => {
     const [query, setQuery] = useState('');
     const [page, setPage] = useState(1);
     const [max_pages, setMaxPages] = useState(50);
@@ -89,6 +89,7 @@ const CartList = () => {
                                     className="col"
                                     key={index}
                                     recipe={recipe}
+                                    username={username}
                                 />
                             )
                         })

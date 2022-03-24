@@ -12,6 +12,7 @@ import MyLoader from '../components/MyLoader'
 //gloabl functions
 
 export default function HomePage() {
+  console.log("aaaaaaaaaaaaaaa ---->",process.env.NODE_ENV)
   //variables
   const router = useRouter()
   const dispatch = useDispatch()
@@ -58,7 +59,7 @@ export default function HomePage() {
               file && <img src={URL.createObjectURL(file)} alt='preview' className='img-fluid' height={200} width={300} />
             }
             <br />
-            <input type="file" className='form-control-file mt-3'
+            <input required type="file" className='form-control-file mt-3'
               accept="image/*"
               onChange={(event) => {
                 setFile(event.target.files[0])

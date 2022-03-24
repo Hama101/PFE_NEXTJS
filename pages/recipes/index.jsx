@@ -6,20 +6,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 //my controllers
-import { fetchListOfRecipesDispatcher } from '../../controllers/redux/actions/recipes'
+
 //my components
 import CartList from '../../components/CartList'
 
 //gloabl functions
 
 export default function HomePage() {
+
     //variables
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.auth.user)
+
     return (
         <Layout
             title="I FOOD | Recipes"
             description="Recipes page where you can find the best food around the world"
         >
-            <CartList />
+            <CartList username={user ? user.username : ''} />
         </Layout>
     )
 }

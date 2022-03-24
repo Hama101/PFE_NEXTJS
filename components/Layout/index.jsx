@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import swal from 'sweetalert';
+
 import NavBar from '../NavBar'
 import MyLoader from '../MyLoader'
+import FloatingButton from '../FloatingButton'
+
 // react , redux and next stuff
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
@@ -55,9 +58,11 @@ const Layout = ({ title, content, children }) => {
                 <meta name="description" content={content} />
             </Head>
             <NavBar />
+            <FloatingButton />
             <div className="container">
                 {loading ? <MyLoader /> : children}
             </div>
+
         </>
     );
 }
