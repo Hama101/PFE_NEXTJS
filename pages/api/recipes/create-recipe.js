@@ -8,6 +8,7 @@ export default async (request, response) => {
         const cookies = cookie.parse(request.headers.cookie ?? '');
         // get the token from the cookies
         const access = cookies.access ?? false;
+        console.log("the access token is : ", access)
         if (access === false) {
             return response.status(403).json({
                 error: "User forbidden from making the request",
@@ -19,8 +20,9 @@ export default async (request, response) => {
                     Authorization: `token ${access}`
                 }
             });
-            if (apiResponse.status === 200) {
-                console.log("Crete recipe action success : ", apiResponse.data);
+            if (apiResponse.status === 200 ) {
+                
+                console.log("Created recipe action success : ", apiResponse.data);
                 return response.status(200).json({
                     success: "Recipe created successfully",
                     recipe: apiResponse.data
@@ -30,7 +32,6 @@ export default async (request, response) => {
             }
 
         } catch (error) {
-            console.log("error is: ", error);
             return response.status(500).json({
                 error: "Something went wrong with verfication",
             })

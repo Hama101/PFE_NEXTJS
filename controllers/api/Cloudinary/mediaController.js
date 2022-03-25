@@ -1,10 +1,5 @@
-const cloudinary = require('cloudinary').v2;
+import { CLOUDINARY_CONFIG } from '../../config'
 
-
-// Change cloud name, API Key, and API Secret below
-cloudinary.config({ 
-    
-});
 
 //handel file upload to cloudinary
 export const uploadFileToCouldinary = (file, setProgress) => {
@@ -17,7 +12,7 @@ export const uploadFileToCouldinary = (file, setProgress) => {
         xhr.onload = () => {
             const jsonResponse = JSON.parse(xhr.responseText);
             // return the secure_url
-            console.log("the response is : ", jsonResponse)
+            // console.log("the response is : ", jsonResponse)
             resolve(jsonResponse);
         };
         //handel fail
@@ -42,8 +37,5 @@ export const uploadFileToCouldinary = (file, setProgress) => {
 }
 //handel file delete from cloudinary
 export const deleteFileFromCloudinary = (public_id) =>{
-    cloudinary.uploader.destroy(`${public_id}`, (result) =>{
-        console.log(result); 
-    }
-    );
+    console.log("delete file from cloudinary : ", public_id)
 }

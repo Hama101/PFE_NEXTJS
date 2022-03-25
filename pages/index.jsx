@@ -12,7 +12,6 @@ import MyLoader from '../components/MyLoader'
 //gloabl functions
 
 export default function HomePage() {
-  console.log("aaaaaaaaaaaaaaa ---->",process.env.NODE_ENV)
   //variables
   const router = useRouter()
   const dispatch = useDispatch()

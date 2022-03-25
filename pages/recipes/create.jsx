@@ -34,6 +34,10 @@ const CreateRecipePage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (name === '' || ingredients.length === 0 || steps.length === 0 || images.length === 0 ) {
+            swal('Ivalid Data' , "Please enter a Valid Data!" , "error")
+            return false
+        }
         console.log("submitted")
         let time = ""
         if (days) {
@@ -53,19 +57,20 @@ const CreateRecipePage = () => {
             instructions: steps,
             time: time,
             rating: "0 rating",
+            vedios: [],
         }
         console.log("formData :", formData);
-        //const apiResponse = await createRecipe(formData)
-        //console.log(apiResponse)
-        // if (apiResponse.success) {
-        //     const recipeSlug = apiResponse.recipe.slug
-        //     swal("Success", "Recipe created successfully with slug of " + recipeSlug, "success")
-        //     router.push('/recipes') // for now we redicret to recipes page
-        //     // router.push('/recipes/' + recipeSlug)
+        const apiResponse = await createRecipe(formData)
+        console.log(apiResponse)
+        if (apiResponse.success) {
+            const recipeSlug = apiResponse.recipe.data.slug
+            swal("Success", "Recipe created successfully with slug of " + recipeSlug, "success")
+            router.push('/recipes') // for now we redicret to recipes page
+            // router.push('/recipes/' + recipeSlug)
 
-        // } else {
-        //     swal("Error", "Something went wrong", "error")
-        // }
+        } else {
+            swal("Error", "Something went wrong", "error")
+        }
     }
 
     return (
@@ -98,7 +103,7 @@ const CreateRecipePage = () => {
                             <div className=''>
                                 <div className='form-group mt-4'>
                                     <label className="text-white mb-2" htmlFor='recipeName'>Recipe Name*</label>
-                                    <input type='text' className='form-control' id='recipeName' placeholder='Recipe Name'
+                                    <input required type='text' className='form-control' id='recipeName' placeholder='Recipe Name'
                                         onChange={(e) => {
                                             setName(e.target.value)
                                         }}

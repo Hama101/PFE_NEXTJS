@@ -4,7 +4,8 @@ import { Button, Grid } from '@material-ui/core'
 //my components
 import FileWithProgress from './FileWithProgress'
 import Fileuploadhandeler from './Fileuploadhandeler'
-
+//my controllers
+import { deleteFileFromCloudinary } from '../../controllers/api/Cloudinary/mediaController'
 
 const MultipleFileUploadField = ({ setImages }) => {
     // a schema of a file wrapper
@@ -25,6 +26,7 @@ const MultipleFileUploadField = ({ setImages }) => {
         setImages(files.map(file => file.url))
         // handel deleting file from cloudinary
         console.log("deleting file with id of :", id)
+        deleteFileFromCloudinary(id);
     }
 
     const onUpload = (file, url, id) => {

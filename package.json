@@ -9,11 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.7.0",
     "@material-ui/core": "^4.12.3",
     "axios": "^0.26.1",
+    "buffer": "^6.0.3",
     "cloudinary": "^1.29.0",
+    "cloudinary-build-url": "^0.2.4",
+    "cloudinary-core": "^2.12.3",
     "cookie": "^0.4.2",
+    "crypto": "^1.0.1",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "http-server": "^14.1.0",
+    "http2": "^3.3.7",
     "next": "12.1.0",
+    "path": "^0.12.7",
+    "querystring": "^0.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-dropzone": "^12.0.4",
@@ -30,6 +41,7 @@
   },
   "devDependencies": {
     "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0"
+    "eslint-config-next": "12.1.0",
+    "process": "^0.11.10"
   }
 }
