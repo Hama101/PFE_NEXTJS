@@ -7,7 +7,7 @@ import DATABASEURL, { BASE_AI_LIVE_URL } from './apiRoutes'
 
 export const callDjango = axios.create({
     baseURL: DATABASEURL.production,
-    timeout: 20000,
+    timeout: 50000,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -15,7 +15,7 @@ export const callDjango = axios.create({
 
 export const callNext = axios.create({
     baseURL: '/api',
-    timeout: 20000,
+    timeout: 50000,
     headers: {
         'Content-Type': 'application/json',
     }

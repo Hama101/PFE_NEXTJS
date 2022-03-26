@@ -7,3 +7,11 @@ export async function fetchListOfRecipesByPageAndQuery(page, query) {
     return data;
 }
 
+
+//fecth recipe details by slug 
+export async function fetchRecipeDetailsBySlug(slug) {
+    const res = await callDjango.get(`/recipes/recipes-list/${slug}/`);
+    const data = await res.data;
+    console.log("Details : " , data);
+    return data;
+}

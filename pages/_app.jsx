@@ -10,7 +10,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
       <Head>
-        <title>Sea of Food</title>
+        <title>I-FOOD</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"

@@ -1,17 +1,31 @@
 import { useState, useEffect } from 'react';
-
+//3rd party components
+import swal from 'sweetalert';
 //bring Cart component
 import Cart from './Cart'
 import MyLoader from '../MyLoader'
 //3rd party components
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchListOfRecipesByPageAndQuery } from '../../controllers/api/Django/recpies'
+//my controllers
+import { deleteRecipe } from '../../controllers/api/Next/recpies'
+
 
 const CartList = ({username}) => {
     const [query, setQuery] = useState('');
     const [page, setPage] = useState(1);
     const [max_pages, setMaxPages] = useState(50);
     const [recipes, setRecipes] = useState([]);
+
+    const onDelete = async (slug) => {
+        const newRecipes = recipes.filter(recipe => recipe.slug !== slug);
+        setRecipes(newRecipes);
+        //call backend to delete the recipe
+        const apiResponse = await deleteRecipe(slug);
+        if (apiResponse.success) {
+            swal('Deleted', 'The recipe has been deleted', 'success');
+        }
+    }
 
     const next = async () => {
         setPage(page + 1);
@@ -90,6 +104,7 @@ const CartList = ({username}) => {
                                     key={index}
                                     recipe={recipe}
                                     username={username}
+                                    onDelete={onDelete}
                                 />
                             )
                         })
