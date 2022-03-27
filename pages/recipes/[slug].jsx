@@ -1,14 +1,17 @@
-import {useEffect , useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 //hoc
 import Layout from '../../components/layout'
+//my components
+import ImageSlider from '../../components/ImageSlider'
+
 //my controllers
 import { fetchRecipeDetailsBySlug } from '../../controllers/api/Django/recpies'
 
 
 //get server side props
 export async function getServerSideProps(context) {
-    try{
+    try {
         const { slug } = context.query
         const recipe = await fetchRecipeDetailsBySlug(slug)
         return {
@@ -16,7 +19,7 @@ export async function getServerSideProps(context) {
                 details: recipe,
             }
         }
-    }catch(error){
+    } catch (error) {
         //redirect to 404
         return context.res.writeHead(302, {
             Location: '/404'
@@ -25,8 +28,8 @@ export async function getServerSideProps(context) {
 }
 
 
-const RecipeDetailPage = ({details}) => {
-    const [recipe , setRecipe] = useState(details)
+const RecipeDetailPage = ({ details }) => {
+    const [recipe, setRecipe] = useState(details)
 
     return (
         <Layout
@@ -34,7 +37,31 @@ const RecipeDetailPage = ({details}) => {
             description={`${recipe.name}`}
         >
             <h1>{recipe.name}</h1>
-            <img src={recipe.thumbnail} alt={recipe.name} height={300} width={200} />
+            <ImageSlider slides={recipe.images} />
+            <br />
+            <div>
+                <h2>Ingredients</h2>
+                <ul>
+                    {recipe.ingredients.map((ingredient, index) => {
+                        return (
+                            <li key={index}>{ingredient}</li>
+                        )
+                    })}
+                </ul>
+            </div>
+            <div>
+                <h2>Instructions</h2>
+                <ol>
+                    {recipe.instructions.map((instruction, index) => {
+                        return (
+                            <li key={index}>{instruction}</li>
+                        )
+                    })}
+                </ol>
+            </div>
+            <div>
+                <h3>Time : {recipe.time} </h3>
+            </div>
         </Layout>
     );
 }

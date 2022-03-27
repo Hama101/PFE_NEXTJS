@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 
 
-const Cart = ({ recipe, username , onDelete }) => {
+const Cart = ({ recipe, username, onDelete }) => {
 
-    const handelDelete = (event)=>{
+    const handelDelete = (event) => {
         event.preventDefault();
         onDelete(recipe.slug);
     }
@@ -23,12 +23,12 @@ const Cart = ({ recipe, username , onDelete }) => {
                 </Link>
 
                 {username === recipe.restaurant
-                    ?   <a
+                    ? <a
                         className="btn btn-danger ml-2"
                         onClick={event => handelDelete(event)}
-                        >
-                            Delete
-                        </a>
+                    >
+                        Delete
+                    </a>
                     : null
                 }
             </div>
