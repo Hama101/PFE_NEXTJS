@@ -1,13 +1,10 @@
 import { CLOUDINARY_CONFIG } from '../../config'
-
-
 //handel file upload to cloudinary
 export const uploadFileToCouldinary = (file, setProgress) => {
     const cloudUrl = "https://api.cloudinary.com/v1_1/after-code/image/upload"
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', cloudUrl);
-
         //handel upload success
         xhr.onload = () => {
             const jsonResponse = JSON.parse(xhr.responseText);
@@ -31,7 +28,6 @@ export const uploadFileToCouldinary = (file, setProgress) => {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', 'I-FOOD');
-
         xhr.send(formData);
     });
 }

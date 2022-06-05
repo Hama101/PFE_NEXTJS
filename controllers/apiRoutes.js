@@ -5,5 +5,4 @@ const DATABASEURL = {
 };
 export default DATABASEURL;
 
-
 export const BASE_AI_LIVE_URL = "https://sea-of-food.herokuapp.com";

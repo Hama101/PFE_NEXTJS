@@ -51,7 +51,8 @@ const MultipleFileUploadField = ({ setImages }) => {
     const { getRootProps, getInputProps } = useDropzone({
         onDrop,
         accept: 'image/*',
-        maxSize: 512 * 1024, //512kb
+        maxSize: 1024 * 1024 * 20, //20 mo
+        multiple: true
     })
 
     return (
@@ -60,7 +61,7 @@ const MultipleFileUploadField = ({ setImages }) => {
                 borderRadius: '10px',
                 border: '2px solid #fff'
             }}>
-                <input {...getInputProps()} />
+                <input {...getInputProps()} id="file_uploader" />
                 <p className="text-white" style={{
                     fontSize: '1.25rem',
                     fontWeight: 'bold',

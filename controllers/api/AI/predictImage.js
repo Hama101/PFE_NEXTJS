@@ -21,5 +21,5 @@ export const uploadImageByAxios = async (file) => {
         console.log("error : ", err);
         return false;
     }
-    //fecth is better than axios cause it worked for me
+    //fecth is better than axios cause it worked for me on mobile dunno why
 }

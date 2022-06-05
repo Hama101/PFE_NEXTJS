@@ -36,6 +36,7 @@ const CartList = ({username}) => {
 
     // handel Search
     const handelSearch = async () => {
+        setRecipes([]);
         console.log("in search function", page, query);
         const apiResponse = await fetchListOfRecipesByPageAndQuery(page = 1, query);
         setRecipes(apiResponse.data);

@@ -14,6 +14,7 @@ import MyLoader from '../components/MyLoader'
 export default function HomePage() {
   //variables
   const router = useRouter()
+  
   const dispatch = useDispatch()
   //redux states
   const isAuthenticated = useSelector(state => state.auth.authenticated)
@@ -44,12 +45,12 @@ export default function HomePage() {
     >
       <div className='p-5 bg-dark rounded-3'>
         <div className='container-fluid py-3'>
-          <h1 className='display-5 fw-bold text-white'>Home Page</h1>
-          <p className='fs-4 mt-3 text-white'>
+          <h1 className='display-5 fw-bold text-white'>Home ++ Page</h1>
+          <div className='fs-4 mt-3 text-white'>
             Welcome to Sea of food <h3> {user && user.username}</h3>
             In this page you can upload any image of a unkown recipes for you and our AI model will ,
             try to predict it and gives you some related suggestions.
-          </p>
+          </div>
         </div>
 
         <form >
@@ -66,13 +67,14 @@ export default function HomePage() {
             />
           </div>
           {
-            !fileLoading && <button
+            !fileLoading  && <button
               type='submit'
               className='btn btn-primary mt-3'
               onClick={(event) => handelClick(event)}
             >
               Upload
             </button>
+            
           }
           {
             fileLoading && <MyLoader />

@@ -34,6 +34,10 @@ const CreateRecipePage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        
+        //loop throw images and delete the undefined ones
+        setImages(oldImages => oldImages.filter(image => image !== undefined))
+
         if (name === '' || ingredients.length === 0 || steps.length === 0 || images.length === 0 ) {
             swal('Ivalid Data' , "Please enter a Valid Data!" , "error")
             return false
@@ -67,7 +71,6 @@ const CreateRecipePage = () => {
             swal("Success", "Recipe created successfully with slug of " + recipeSlug, "success")
             router.push('/recipes') // for now we redicret to recipes page
             // router.push('/recipes/' + recipeSlug)
-
         } else {
             swal("Error", "Something went wrong", "error")
         }
@@ -85,7 +88,7 @@ const CreateRecipePage = () => {
                 <form >
                     {/* where we will have the iamge droper component */}
                     {/* image preview for the first image */}
-                    <img src={images[0] || "https://thumbs.dreamstime.com/b/indian-food-curry-butter-chicken-palak-paneer-chiken-tikka-biryani-vegetable-curry-papad-dal-palak-sabji-jira-alu-rice-138549925.jpg"}
+                    <img src={images[images.length - 1] || "https://thumbs.dreamstime.com/b/indian-food-curry-butter-chicken-palak-paneer-chiken-tikka-biryani-vegetable-curry-papad-dal-palak-sabji-jira-alu-rice-138549925.jpg"}
                         className="img-fluid"
                         alt="recipe image"
                         height={200} width={300}
@@ -142,7 +145,7 @@ const CreateRecipePage = () => {
                                 </div>
                                 <div className='form-group mt-4'>
                                     <label className="text-white mb-2 mr-2" htmlFor='recipeIngredients'>Recipe Ingredients*</label>
-                                    <button className='btn btn-warning btn-sm'
+                                    <button className='btn btn-warning btn-sm' id = 'addIngredient'
                                         onClick={(e) => {
                                             e.preventDefault()
                                             //add another input
@@ -156,7 +159,7 @@ const CreateRecipePage = () => {
                                                     return (
                                                         <Grid container justify="space-between" alignItems="center" key={index}>
                                                             <Grid item className='col-md-10'>
-                                                                <input type='text' className='form-control mb-2' id='recipeIngredients' placeholder={'Ingredient ' + (index + 1)}
+                                                                <input type='text' className='form-control mb-2' id='recipeIngredients' placeholder={'Ingredient ' + (index + 1)} name={'Ingredient ' + index}
                                                                     onChange={(e) => {
                                                                         e.preventDefault()
                                                                         //update the ingredient
@@ -192,7 +195,7 @@ const CreateRecipePage = () => {
                                 </div>
                                 <div className='form-group mt-4'>
                                     <label className="text-white mb-2" htmlFor='recipeInstructions'>Recipe Steps*</label>
-                                    <button className='btn btn-warning btn-sm'
+                                    <button className='btn btn-warning btn-sm' id = 'addStep'
                                         onClick={(e) => {
                                             e.preventDefault()
                                             //add another input
@@ -207,7 +210,7 @@ const CreateRecipePage = () => {
                                                     return (
                                                         <Grid container justify="space-between" alignItems="center" key={index}>
                                                             <Grid item className='col-md-10'>
-                                                                <input type='text' className='form-control mb-2' id='recipeIngredients' placeholder={'Step ' + (index + 1)}
+                                                                <input type='text' className='form-control mb-2' id='recipeIngredients' placeholder={'Step ' + (index + 1)} name={'Step ' + index}
                                                                     onChange={(e) => {
                                                                         e.preventDefault()
                                                                         //update the ingredient
@@ -249,6 +252,7 @@ const CreateRecipePage = () => {
                             <div className='col-md-12'>
                                 <button type='submit' className='btn btn-primary btn-block'
                                     onClick={(e) => handleSubmit(e)}
+                                    id = 'submitRecipe'
                                 >Create Recipe</button>
                             </div>
                         </div>

@@ -1,0 +1,65 @@
+.slider {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    /* a cool responsive rounded image and centered */
+    width: 100%;
+    height: 100%;
+    border-radius: 10%;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* a cool animation when this image renderd */
+    animation: fadeIn 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+
+}
+
+.right_arrow {
+    /* place this element to hard right of it parent element  */
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    /* always show this item on top */
+    z-index: 1;
+}
+
+.left_arrow {
+    /* place this element to hard left of it parent element  */
+    position: absolute;
+    top: 50%;
+    bottom:50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    /* always show this item on top */
+    z-index: 1;
+}
+
+.slide {
+    opacity: 0;
+    transition-duration: 1s ease;
+}
+
+.active {
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+}
