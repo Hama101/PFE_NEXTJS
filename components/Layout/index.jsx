@@ -28,11 +28,6 @@ const Layout = ({ title, content, children }) => {
             button: "OK",
         });
         dispatch({ type: SET_MESSAGE, payload: { message: null, type: null } })
-        // if (type === 'success') {
-        //     setTimeout(() => {
-        //         router.push('/')
-        //     }, 2000)
-        // }
     }
 
     //call check_auth_status on component mount

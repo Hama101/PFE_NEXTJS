@@ -10,7 +10,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const isAuthenticated = useSelector(state => state.auth.authenticated)
     const profile = useSelector(state => state.auth.profile)
-
+    console.log('NavBar profile', profile)
     const handelLogOut = (event) => {
         event.preventDefault();
         nextLogOutHandler(dispatch);
@@ -62,29 +62,44 @@ const NavBar = () => {
             </li>
         </>
     );
+
+    const checkVerified = (
+        <>
+            {isAuthenticated &&
+                <div>
+                    {profile && profile.is_verified ||
+                        <div className="alert alert-warning" role="alert">
+                            Your profile is not verified ! Please check you email to verify your account !
+                        </div>
+                    }
+                </div>
+            }
+        </>);
     return (
-        <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-3 '>
-            <div className='container-fluid'>
-                <Link href='/' className='nav-item'>
-                    <a className="nav-link" href="#">
-                        <img src="https://res.cloudinary.com/after-code/image/upload/v1647779311/IFood_hfzqqn.png"
-                            width="30" height="30" alt="logo" className="rounded-circle" />
-                    </a>
-                </Link>
-                <button
-                    className='navbar-toggler'
-                    type='button'
-                    data-bs-toggle='collapse'
-                    data-bs-target='#navbarNav'
-                    aria-controls='navbarNav'
-                    aria-expanded='false'
-                    aria-label='Toggle navigation'
-                >
-                    <span className='navbar-toggler-icon'></span>
-                </button>
-                <div className='collapse navbar-collapse' id='navbarNav'>
-                    <ul className='navbar-nav'>
-                        {/* <li className='nav-item'>
+        <>
+            {checkVerified}
+            <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-3 '>
+                <div className='container-fluid'>
+                    <Link href='/' className='nav-item'>
+                        <a className="nav-link" href="#">
+                            <img src="https://res.cloudinary.com/after-code/image/upload/v1647779311/IFood_hfzqqn.png"
+                                width="30" height="30" alt="logo" className="rounded-circle" />
+                        </a>
+                    </Link>
+                    <button
+                        className='navbar-toggler'
+                        type='button'
+                        data-bs-toggle='collapse'
+                        data-bs-target='#navbarNav'
+                        aria-controls='navbarNav'
+                        aria-expanded='false'
+                        aria-label='Toggle navigation'
+                    >
+                        <span className='navbar-toggler-icon'></span>
+                    </button>
+                    <div className='collapse navbar-collapse' id='navbarNav'>
+                        <ul className='navbar-nav'>
+                            {/* <li className='nav-item'>
                             <Link href='/'>
                                 <a className={
                                     router.pathname === '/' ?
@@ -94,17 +109,17 @@ const NavBar = () => {
                                 </a>
                             </Link>
                         </li> */}
-                        <li className='nav-item'>
-                            <Link href='/recipes'>
-                                <a className={
-                                    router.pathname === '/recipes' ?
-                                        'nav-link active' : 'nav-link'
-                                }>
-                                    Recipes
-                                </a>
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
+                            <li className='nav-item'>
+                                <Link href='/recipes'>
+                                    <a className={
+                                        router.pathname === '/recipes' ?
+                                            'nav-link active' : 'nav-link'
+                                    }>
+                                        Recipes
+                                    </a>
+                                </Link>
+                            </li>
+                            {/* <li className='nav-item'>
                             <Link href='/resturants'>
                                 <a className={
                                     router.pathname === '/resturants' ?
@@ -113,19 +128,19 @@ const NavBar = () => {
                                     Resturants
                                 </a>
                             </Link>
-                        </li>
-
-                    </ul>
+                        </li> */}
+                        </ul>
+                    </div>
+                    <div className='collapse navbar-collapse justify-content-end ' id='navbarNav'>
+                        <ul className='navbar-nav'>
+                            {
+                                isAuthenticated ? authLinks : guestLinks
+                            }
+                        </ul>
+                    </div>
                 </div>
-                <div className='collapse navbar-collapse justify-content-end ' id='navbarNav'>
-                    <ul className='navbar-nav'>
-                        {
-                            isAuthenticated ? authLinks : guestLinks
-                        }
-                    </ul>
-                </div>
-            </div>
-        </nav>
+            </nav>
+        </>
     )
 }
 
