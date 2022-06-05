@@ -45,7 +45,11 @@ export default function HomePage() {
     >
       <div className='p-5 bg-dark rounded-3'>
         <div className='container-fluid py-3'>
+<<<<<<< HEAD
           <h1 className='display-5 fw-bold text-white'>Home ++ Page</h1>
+=======
+          <h1 className='display-5 fw-bold text-white'>Home Page</h1>
+>>>>>>> 7232ce05ce33e8e3f6a5c67d85b527d67cea29ad
           <div className='fs-4 mt-3 text-white'>
             Welcome to Sea of food <h3> {user && user.username}</h3>
             In this page you can upload any image of a unkown recipes for you and our AI model will ,

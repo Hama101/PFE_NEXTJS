@@ -1,3 +1,10 @@
 {
   "extends": "next/core-web-vitals",
+<<<<<<< HEAD
+=======
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
+  }
+>>>>>>> 7232ce05ce33e8e3f6a5c67d85b527d67cea29ad
 }
