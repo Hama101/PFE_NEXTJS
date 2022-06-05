@@ -39,10 +39,5 @@
     "sass": "^1.49.9",
     "scss": "^0.2.4",
     "sweetalert": "^2.1.2"
-  },
-  "devDependencies": {
-    "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0",
-    "process": "^0.11.10"
   }
 }
